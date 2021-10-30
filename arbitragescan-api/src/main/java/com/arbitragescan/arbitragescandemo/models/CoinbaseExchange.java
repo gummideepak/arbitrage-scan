@@ -5,29 +5,24 @@ import com.arbitragescan.arbitragescandemo.services.RestService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class CoinbaseExchange implements Exchange {
-    private RestService restController;
-    private final String BASE_URL = "https://api.coinbase.com/v2/";
+public class CoinbaseExchange extends Exchange {
+    // private RestService restController;
+    // private final String BASE_URL = "https://api.coinbase.com/v2/";
 
-    public CoinbaseExchange() {
-    }
-
-    public CoinbaseExchange(RestService restController) {
-        this.restController = restController;
+    public CoinbaseExchange(RestService restService) {
+        super(restService,"https://api.coinbase.com/v2");
     }
 
     @Override
-    public Double getBuyPrice(ExchangePair currencyPair) {
-        // HttpRequest request = HttpRequest.newBuilder().uri(new
-        // URI("https://postman-echo.com/get")).GET().build();
-        String url = this.BASE_URL + "prices/" + this.formatExchangePair(currencyPair) + "/buy";
-        return extractPriceFromJsonResponse(this.restController.getPostsPlainJSON(url));
+    public Double getTopBuyOrderPrice(ExchangePair currencyPair) {
+        String url = this.BASE_URL + "/prices/" + this.formatExchangePair(currencyPair) + "/sell";
+        return extractPriceFromJsonResponse(this.restService.getPostsPlainJSON(url));
     }
 
     @Override
-    public Double getSellPrice(ExchangePair currencyPair) {
-        String url = this.BASE_URL + "prices/" + this.formatExchangePair(currencyPair) + "/sell";
-        return extractPriceFromJsonResponse(this.restController.getPostsPlainJSON(url));
+    public Double getTopSellOrderPrice(ExchangePair currencyPair) {
+        String url = this.BASE_URL + "/prices/" + this.formatExchangePair(currencyPair) + "/buy";
+        return extractPriceFromJsonResponse(this.restService.getPostsPlainJSON(url));
     }
 
     @Override
@@ -40,7 +35,6 @@ public class CoinbaseExchange implements Exchange {
         return "coinbase";
     }
 
-    @Override
     public Double extractPriceFromJsonResponse(String jsonResponse) {
         try{
             // create ObjectMapper instance

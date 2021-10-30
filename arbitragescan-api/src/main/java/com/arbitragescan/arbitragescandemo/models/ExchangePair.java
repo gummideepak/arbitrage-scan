@@ -8,8 +8,8 @@ public class ExchangePair {
 
 
     public ExchangePair(String baseCurrency, String cryptoCurrency) {
-        this.baseCurrency = baseCurrency;
-        this.cryptoCurrency = cryptoCurrency;
+        this.baseCurrency = baseCurrency.toUpperCase();
+        this.cryptoCurrency = cryptoCurrency.toUpperCase();
     }
 
 
