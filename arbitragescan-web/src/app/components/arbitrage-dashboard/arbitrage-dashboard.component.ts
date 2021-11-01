@@ -1,3 +1,5 @@
+import { ArbitrageDto } from './../../../../swagger/model/arbitrageDto';
+import { ArbitrageService } from './arbitrage.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArbitrageDashboardComponent implements OnInit {
   breakpoint:number = 0;
-  arbitrageOptions = [];
-  constructor() {}
+  arbitrageOptions:ArbitrageDto[] = [];
+  constructor(private arbitrageService: ArbitrageService) {
+
+  }
 
   ngOnInit() {
     this.breakpoint = window.innerWidth <= 650 ? 1 : 4;
+    this.arbitrageService.getArbitrage().subscribe(x => {
+      this.arbitrageOptions = x;
+      console.log(x);
+    });
   }
 
   onResize(event:any) {

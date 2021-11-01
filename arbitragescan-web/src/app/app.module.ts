@@ -1,3 +1,4 @@
+import { ApiModule } from './../../swagger/api.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './meterial-module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { BASE_PATH } from 'swagger';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,8 +27,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    ApiModule
   ],
-  providers: [],
+  providers: [
+    { provide: BASE_PATH, useValue: environment.API_BASE_PATH },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

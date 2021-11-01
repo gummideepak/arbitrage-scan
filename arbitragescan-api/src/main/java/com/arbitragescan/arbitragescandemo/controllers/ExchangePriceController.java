@@ -73,9 +73,9 @@ public class ExchangePriceController {
                 result.add(arbitrageDtoEntry);
             }
         }
-        var x = new ArbitrageDto();
-        x.allPrices = allPrices;
-        result.add(x);
+        // var x = new ArbitrageDto();
+        // x.allPrices = allPrices;
+        // result.add(x);
         return result;
     }
 }
