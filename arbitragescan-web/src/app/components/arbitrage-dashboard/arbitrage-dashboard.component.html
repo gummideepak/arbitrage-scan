@@ -1,13 +1,51 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3" *ngFor="let arbitrage of arbitrageOptions">
     <mat-card class="example-card">
-      <mat-card-title-group>
+      <!-- <mat-card-title-group>
         <mat-card-title>Shiba Inu</mat-card-title>
         <mat-card-subtitle>Small</mat-card-subtitle>
         <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-      </mat-card-title-group>
+      </mat-card-title-group> -->
       <mat-card-content>
-        ASDASDASDAS
+        <div class="row">
+          <div class="col-md-4">
+            <span style="color: green;">Buy</span><br>
+            <span>{{arbitrage.tokenName}}</span>
+          </div>
+          <div class="col-md-4">
+            {{arbitrage.numOfTokens}}<br>
+            {{arbitrage.usdEquivalentBuy}}<br>
+            {{+arbitrage.usdEquivalentBuy!/+arbitrage.numOfTokens!}} per {{arbitrage.tokenName}}
+          </div>
+          <div class="col-md-4">
+            <!-- Icon -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <span style="color: red;">Sell</span><br>
+            <span>{{arbitrage.tokenName}}</span>
+          </div>
+          <div class="col-md-4">
+            {{arbitrage.numOfTokens}}<br>
+            {{arbitrage.usdEquivalentSell}}<br>
+            {{+arbitrage.usdEquivalentSell!/+arbitrage.numOfTokens!}} per {{arbitrage.tokenName}}
+          </div>
+          <div class="col-md-4">
+            <!-- Icon -->
+          </div>
+        </div>
+        <div class="row profitbg" style="opacity:1;">
+          <div class="col-md-4">
+            Arbitrage
+          </div>
+          <div class="col-md-4">
+            {{getProfit(+arbitrage.usdEquivalentSell!,+arbitrage.usdEquivalentBuy!)}} USD
+          </div>
+          <div class="col-md-4">
+
+          </div>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>

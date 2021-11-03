@@ -17,6 +17,7 @@ export interface ArbitrageDto {
     exchangeNameBuy?: string;
     exchangeNameSell?: string;
     numOfTokens?: string;
+    tokenName?: string;
     usdEquivalentBuy?: string;
     usdEquivalentSell?: string;
 }

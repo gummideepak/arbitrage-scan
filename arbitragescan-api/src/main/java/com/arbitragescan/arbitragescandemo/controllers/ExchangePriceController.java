@@ -70,6 +70,7 @@ public class ExchangePriceController {
                 arbitrageDtoEntry.usdEquivalentSell = sellEntry.topBuyOrder.toString();
                 arbitrageDtoEntry.exchangeNameBuy = buyEntry.exchangeName;
                 arbitrageDtoEntry.exchangeNameSell = sellEntry.exchangeName;
+                arbitrageDtoEntry.tokenName = key;
                 result.add(arbitrageDtoEntry);
             }
         }

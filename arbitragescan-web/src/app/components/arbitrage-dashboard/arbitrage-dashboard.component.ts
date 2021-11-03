@@ -21,6 +21,9 @@ export class ArbitrageDashboardComponent implements OnInit {
       console.log(x);
     });
   }
+  getProfit(sell:number,buy:number){
+    return (sell-buy).toPrecision(4);
+  }
 
   onResize(event:any) {
     console.log(event);

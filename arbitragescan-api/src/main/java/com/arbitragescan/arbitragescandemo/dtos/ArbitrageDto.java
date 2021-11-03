@@ -13,4 +13,6 @@ public class ArbitrageDto {
     public String exchangeNameSell;
 
     public Map<String, Map<String, ExchangePriceDto>> allPrices;
+
+    public String tokenName;
 }
