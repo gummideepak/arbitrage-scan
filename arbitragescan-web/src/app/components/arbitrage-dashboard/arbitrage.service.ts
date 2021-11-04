@@ -8,7 +8,8 @@ export class ArbitrageService {
 
   constructor(private exchangePriceController: ExchangePriceControllerService) { }
 
-  getArbitrage(){
-    return this.exchangePriceController.getArbitrageListUsingGET(["BTC","ETH"],"USD");
+  getArbitrage(cryptos:string[]){
+    if(cryptos == null) cryptos = [""];
+    return this.exchangePriceController.getArbitrageListUsingGET(cryptos,"USD");
   }
 }

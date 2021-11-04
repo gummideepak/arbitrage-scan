@@ -1,14 +1,22 @@
 .example-card {
-  max-width: 400px;
-  margin-bottom: 8px;
+  padding-bottom: 0;
+  padding-top: 0;
+  margin-top: 1rem;
 }
 
-.arbitrage_row{
-  font-size: 11px;
+.arbitrage_row {
+  font-size: large;
+  padding: 0.78571429rem !important;
 }
 
-.profitbg{
+.profitbg {
   color: white;
   background-color: #28ae61 !important;
-  margin: 0 0 0 0;
 }
+
+.scan-button{
+  padding: 2%;
+  margin-top: 10%;
+}
+
+

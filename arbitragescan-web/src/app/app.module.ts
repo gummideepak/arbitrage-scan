@@ -1,3 +1,4 @@
+import { DefaultHttpInterceptor } from './interceptors/default-http-interceptor';
 import { ApiModule } from './../../swagger/api.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,16 +8,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArbitrageDashboardComponent } from './components/arbitrage-dashboard/arbitrage-dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './meterial-module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BASE_PATH } from 'swagger';
 import { environment } from 'src/environments/environment';
+import { LogoWrapperComponent } from './shared/logo-wrapper/logo-wrapper.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArbitrageDashboardComponent
+    ArbitrageDashboardComponent,
+    LogoWrapperComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,11 +31,17 @@ import { environment } from 'src/environments/environment';
     MaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    ApiModule
+    ApiModule,
+    NgxSpinnerModule
   ],
   providers: [
     { provide: BASE_PATH, useValue: environment.API_BASE_PATH },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DefaultHttpInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

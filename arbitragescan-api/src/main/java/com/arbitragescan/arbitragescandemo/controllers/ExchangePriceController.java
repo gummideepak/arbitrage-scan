@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Map.Entry;
 
 import com.arbitragescan.arbitragescandemo.dtos.ArbitrageDto;
@@ -64,19 +63,18 @@ public class ExchangePriceController {
                                 Entry<String, ExchangePriceDto> e2) -> e1.getValue().topBuyOrder
                                         .compareTo(e2.getValue().topBuyOrder))
                         .get().getValue();
-                ArbitrageDto arbitrageDtoEntry = new ArbitrageDto();
-                arbitrageDtoEntry.numOfTokens = "1";
-                arbitrageDtoEntry.usdEquivalentBuy = buyEntry.topSellOrder.toString();
-                arbitrageDtoEntry.usdEquivalentSell = sellEntry.topBuyOrder.toString();
-                arbitrageDtoEntry.exchangeNameBuy = buyEntry.exchangeName;
-                arbitrageDtoEntry.exchangeNameSell = sellEntry.exchangeName;
-                arbitrageDtoEntry.tokenName = key;
-                result.add(arbitrageDtoEntry);
+                if(!buyEntry.exchangeName.equals(sellEntry.exchangeName) && buyEntry.topSellOrder < sellEntry.topBuyOrder){
+                    ArbitrageDto arbitrageDtoEntry = new ArbitrageDto();
+                    arbitrageDtoEntry.numOfTokens = "1";
+                    arbitrageDtoEntry.usdEquivalentBuy = buyEntry.topSellOrder.toString();
+                    arbitrageDtoEntry.usdEquivalentSell = sellEntry.topBuyOrder.toString();
+                    arbitrageDtoEntry.exchangeNameBuy = buyEntry.exchangeName;
+                    arbitrageDtoEntry.exchangeNameSell = sellEntry.exchangeName;
+                    arbitrageDtoEntry.tokenName = key;
+                    result.add(arbitrageDtoEntry);
+                }
             }
         }
-        // var x = new ArbitrageDto();
-        // x.allPrices = allPrices;
-        // result.add(x);
         return result;
     }
 }

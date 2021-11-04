@@ -1,6 +1,7 @@
 import { ArbitrageDto } from './../../../../swagger/model/arbitrageDto';
 import { ArbitrageService } from './arbitrage.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-arbitrage-dashboard',
@@ -8,15 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./arbitrage-dashboard.component.scss'],
 })
 export class ArbitrageDashboardComponent implements OnInit {
+  selectedCryptos = new FormControl();
   breakpoint:number = 0;
   arbitrageOptions:ArbitrageDto[] = [];
+  cryptos = ["BTC","ETH","SOL","LTC","BCH"];
   constructor(private arbitrageService: ArbitrageService) {
 
   }
 
   ngOnInit() {
     this.breakpoint = window.innerWidth <= 650 ? 1 : 4;
-    this.arbitrageService.getArbitrage().subscribe(x => {
+    this.arbitrageService.getArbitrage(this.cryptos).subscribe(x => {
       this.arbitrageOptions = x;
       console.log(x);
     });
@@ -28,5 +31,15 @@ export class ArbitrageDashboardComponent implements OnInit {
   onResize(event:any) {
     console.log(event);
     this.breakpoint = event.target.innerWidth <= 650 ? 1 : 4;
+  }
+  scan(){
+    let options = this.selectedCryptos.value;
+    if(options == null || options.length == 0){
+      options = this.cryptos;
+    }
+    this.arbitrageService.getArbitrage(options).subscribe(x => {
+      this.arbitrageOptions = x;
+      console.log(x);
+    });
   }
 }

@@ -21,6 +21,9 @@
       </mat-toolbar>
     </p>
     <div>
+      <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="square-loader" [fullScreen]="true">
+        <p style="color: white"> Loading... </p>
+      </ngx-spinner>
       <app-arbitrage-dashboard></app-arbitrage-dashboard>
     </div>
   </mat-sidenav-content>
