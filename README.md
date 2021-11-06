@@ -1,7 +1,5 @@
 <div id="top"></div>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -86,26 +84,22 @@ List of Exchanges Integrated
 Follow the steps below for setting up the project locally.
 
 ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+* [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Maven](https://maven.apache.org/install.html))
 
 ### Clone the repo
 
 ```shell
 git clone https://github.com/gummideepak/arbitrage-scan
-cd arbitrage-scan
-cd arbitragescan-web
 ```
 
-### Install npm packages
+### Building and Running the Web Project
 
 Install the `npm` packages described in the `package.json` and verify that it works:
-
 ```shell
+cd arbitrage-scan
+cd arbitragescan-web
 npm install
 npm start
 ```
@@ -113,6 +107,21 @@ npm start
 The `npm start` command builds (compiles TypeScript and copies assets) the application into `dist/`, watches for changes to the source files, and runs `lite-server` on port `4200`.
 
 Shut it down manually with `Ctrl-C`.
+
+### Building and Running the application locally
+
+There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `com.arbitragescan.arbitragescandemo.ArbitragescanApiApplication` class from your IDE.
+
+Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
+
+```shell
+cd arbitrage-scan
+cd arbitragescan-api
+mvn spring-boot:run
+```
+
+
+
 
 
 
