@@ -12,7 +12,7 @@
     Your personal assistance for cryptocurrency arbitrage!
     <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="http://arbitrage-scanner.s3-website-us-east-1.amazonaws.com/">View Demo</a>
     ·
     <a href="https://github.com/gummideepak/arbitrage-scan/issues">Report Bug</a>
     ·
@@ -24,7 +24,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-(https://example.com)
+[Demo](http://arbitrage-scanner.s3-website-us-east-1.amazonaws.com/) (Note: FTX Exchange is not working in the hosted version.)
 
 The web page contains the following
  - Prices of Cryptocurriencies
@@ -97,7 +97,9 @@ mvn spring-boot:run
 ## FAQ
 **Question:** Are there any sub-optimal choices( or short cuts taken due to limited time ) in your implementation?
 
-**Answer:** To create the exhange object I went ahed and created them manually in the ExchangeService.java. Ideally we should be using dependency injection or use a Factory Pattern to create the objects. I was in the middle of doing it but didnt have enough time to integrate it. I will focus to setup a live demo in the remaing time.
+**Answer:** 
+1. I think the UI is a little unfinished.
+2. To create the exhange object I went ahed and created them manually in the ExchangeService.java. Ideally we should be using dependency injection or use a Factory Pattern to create the objects. I was in the middle of doing it but didnt have enough time to integrate it. I will focus to setup a live demo in the remaing time.
 ##
 **Question:** Is any part of it over-designed?
 
