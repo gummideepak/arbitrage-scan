@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.arbitragescan.arbitragescandemo.dtos.ExchangePriceDto;
+import com.arbitragescan.arbitragescandemo.models.BinanceExchange;
 import com.arbitragescan.arbitragescandemo.models.CoinbaseExchange;
 import com.arbitragescan.arbitragescandemo.models.Exchange;
 import com.arbitragescan.arbitragescandemo.models.ExchangePair;
@@ -28,6 +29,7 @@ public class ExchangeService {
         this.exchangeList.add(new CoinbaseExchange(restService));
         this.exchangeList.add(new KrakenExchange(restService));
         this.exchangeList.add(new FTXExchange(restService));
+        this.exchangeList.add(new BinanceExchange(restService));
     }
 
     public Map<String,ExchangePriceDto> getAllPrices(ExchangePair exchangePair){

@@ -19,6 +19,9 @@ public abstract class Exchange {
         try {
             result.topBuyOrder = getTopBuyOrderPrice(currencyPair);
             result.topSellOrder = getTopSellOrderPrice(currencyPair);
+            if(result.topBuyOrder==null || result.topSellOrder==null){
+                return null;
+            }
         } catch (Exception ex) {
             // Failed to fetch Buy/Sell Order Price
             return null;

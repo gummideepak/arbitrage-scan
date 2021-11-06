@@ -24,11 +24,11 @@ public class FTXExchange extends Exchange {
             JsonNode jsonRootNode = objectMapper.readTree(jsonResponse);
             return jsonRootNode.get("result").get("bids").get(0).get(0).asDouble();
         } catch (RestClientException ex) {
-            ex.printStackTrace();
+            System.out.println("FTX Buy Fetch Failed");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            System.out.println("FTX Buy Fetch Failed");
         }
-        return 0.0;
+        return null;
     }
 
     @Override
@@ -38,14 +38,14 @@ public class FTXExchange extends Exchange {
             String jsonResponse = this.restService.getPostsPlainJSON(url);
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonRootNode = objectMapper.readTree(jsonResponse);
-             return jsonRootNode.get("result").get("asks").get(0).get(0).asDouble();
+            return jsonRootNode.get("result").get("asks").get(0).get(0).asDouble();
             //return Double.parseDouble(jsonRootNode.get("result").get("bids").get(0).asText());
         } catch (RestClientException ex) {
-            ex.printStackTrace();
+            System.out.println("FTX Sell Fetch Failed");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            System.out.println("FTX Sell Fetch Failed");
         }
-        return 0.0;
+        return null;
     }
 
     @Override

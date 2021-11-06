@@ -59,20 +59,49 @@ public class ExchangePriceController {
                                         .compareTo(e2.getValue().topSellOrder))
                         .get().getValue();
                 ExchangePriceDto sellEntry = temp.entrySet().stream()
+                        .filter(x -> !x.getValue().exchangeName.equals(buyEntry.exchangeName))
                         .max((Entry<String, ExchangePriceDto> e1,
                                 Entry<String, ExchangePriceDto> e2) -> e1.getValue().topBuyOrder
                                         .compareTo(e2.getValue().topBuyOrder))
                         .get().getValue();
-                if(!buyEntry.exchangeName.equals(sellEntry.exchangeName) && buyEntry.topSellOrder < sellEntry.topBuyOrder){
-                    ArbitrageDto arbitrageDtoEntry = new ArbitrageDto();
-                    arbitrageDtoEntry.numOfTokens = "1";
-                    arbitrageDtoEntry.usdEquivalentBuy = buyEntry.topSellOrder.toString();
-                    arbitrageDtoEntry.usdEquivalentSell = sellEntry.topBuyOrder.toString();
-                    arbitrageDtoEntry.exchangeNameBuy = buyEntry.exchangeName;
-                    arbitrageDtoEntry.exchangeNameSell = sellEntry.exchangeName;
-                    arbitrageDtoEntry.tokenName = key;
-                    result.add(arbitrageDtoEntry);
+
+                ExchangePriceDto sellEntry2 = temp.entrySet().stream()
+                        .max((Entry<String, ExchangePriceDto> e1,
+                                Entry<String, ExchangePriceDto> e2) -> e1.getValue().topBuyOrder
+                                        .compareTo(e2.getValue().topBuyOrder))
+                        .get().getValue();
+                ExchangePriceDto buyEntry2 = temp.entrySet().stream()
+                        .filter(x -> !x.getValue().exchangeName.equals(sellEntry2.exchangeName))
+                        .min((Entry<String, ExchangePriceDto> e1,
+                                Entry<String, ExchangePriceDto> e2) -> e1.getValue().topSellOrder
+                                        .compareTo(e2.getValue().topSellOrder))
+                        .get().getValue();
+                if (sellEntry.topBuyOrder - buyEntry.topSellOrder > sellEntry2.topBuyOrder - buyEntry.topSellOrder) {
+                    if (!buyEntry.exchangeName.equals(sellEntry.exchangeName)
+                            && buyEntry.topSellOrder < sellEntry.topBuyOrder) {
+                        ArbitrageDto arbitrageDtoEntry = new ArbitrageDto();
+                        arbitrageDtoEntry.numOfTokens = "1";
+                        arbitrageDtoEntry.usdEquivalentBuy = buyEntry.topSellOrder.toString();
+                        arbitrageDtoEntry.usdEquivalentSell = sellEntry.topBuyOrder.toString();
+                        arbitrageDtoEntry.exchangeNameBuy = buyEntry.exchangeName;
+                        arbitrageDtoEntry.exchangeNameSell = sellEntry.exchangeName;
+                        arbitrageDtoEntry.tokenName = key;
+                        result.add(arbitrageDtoEntry);
+                    }
+                } else {
+                    if (!buyEntry2.exchangeName.equals(sellEntry2.exchangeName)
+                            && buyEntry2.topSellOrder < sellEntry2.topBuyOrder) {
+                        ArbitrageDto arbitrageDtoEntry = new ArbitrageDto();
+                        arbitrageDtoEntry.numOfTokens = "1";
+                        arbitrageDtoEntry.usdEquivalentBuy = buyEntry2.topSellOrder.toString();
+                        arbitrageDtoEntry.usdEquivalentSell = sellEntry2.topBuyOrder.toString();
+                        arbitrageDtoEntry.exchangeNameBuy = buyEntry2.exchangeName;
+                        arbitrageDtoEntry.exchangeNameSell = sellEntry2.exchangeName;
+                        arbitrageDtoEntry.tokenName = key;
+                        result.add(arbitrageDtoEntry);
+                    }
                 }
+
             }
         }
         return result;

@@ -44,9 +44,9 @@ public class CoinbaseExchange extends Exchange {
             return Double.parseDouble(jsonRootNode.get("data").get("amount").asText());
         }
         catch(IOException ex){
-            ex.printStackTrace();
+            System.out.println("Coinbase Buy/Sell Fetch Failed");
         }
-        return 0.0;
+        return null;
     }
 
 }

@@ -12,11 +12,11 @@
 	<groupId>com.arbitragescan</groupId>
 	<artifactId>arbitragescandemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>arbitragescan-api</name>
 	<description>Demo project to show price differences between different exchanges</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
