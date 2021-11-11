@@ -24,7 +24,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Demo](http://arbitrage-scanner.s3-website-us-east-1.amazonaws.com/) (Note: FTX Exchange is not working in the hosted version.)
+[Demo](http://arbitrage-scanner.s3-website-us-east-1.amazonaws.com/) (Note: FTX Exchange is not working in the hosted version due to connectivity issues from a virtual machine. Sometimes the AWS demo wont work as its a free instance. Let me know if its down so I can reboot the instance.)
 
 The web page contains the following
  - Prices of Cryptocurriencies
